@@ -18,7 +18,7 @@ theme:
   header_text_feature_image:
   footer_text: >
    <p>Made with love from</p>
-   <img src="/img/cities/barcelona.png" alt="Barcelona" title="Barcelona" style="height: 3rem;">
+   <a href="https://www.google.es/search?q=barcelona"><img src="/img/cities/barcelona.png" alt="Barcelona" title="Barcelona" style="height: 3rem;"></a>
 
   # Icons
   rss: true
