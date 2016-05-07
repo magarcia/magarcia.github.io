@@ -3,7 +3,7 @@ layout: post
 title: First Weeks at GSoC 2016
 ---
 
-This year I have been accepted in Google Summer of Code Program. This year too I
+This year I have been selected in Google Summer of Code Program. This year too I
 made my first proposal. I was looking for a project related with Angular,
 specially with Angular 2, to improve my knowledge about this framework and his
 new version. It was amazing when I found
