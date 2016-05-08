@@ -16,6 +16,6 @@ and reporting someones to [Janus-Gateway](https://github.com/meetecho/janus-gate
 I hope that write this posts will be useful, for me and my mentors, to keep
 a progress journal about what I'm doing about the project.
 
-This weeks was about exploring the code of Jangouts and I try to do something with
+These weeks was about exploring the code of Jangouts and I try to do something with
 Angular 2, and obiously to get updated about what happens in
 [ng-conf](http://www.ng-conf.org).
