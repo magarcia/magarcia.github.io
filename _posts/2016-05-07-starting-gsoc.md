@@ -1,6 +1,9 @@
 ---
 layout: post
 title: First Weeks at GSoC 2016
+tags:
+  - GSoC
+  - Jangouts
 ---
 
 This year I have been selected in Google Summer of Code Program. This year too I
