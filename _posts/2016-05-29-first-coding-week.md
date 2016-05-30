@@ -6,7 +6,7 @@ tags:
   - Jangouts
 ---
 
-First week of coding period ad GSoC 2016, so I started the upgrading process of
+First week of coding period at GSoC 2016, so I started the upgrading process of
 Jangouts from Angular 1.x to Angular 2. This week, the tasks have been
 fulfilled within the deadline, I hope to remain so for the next week.
 
