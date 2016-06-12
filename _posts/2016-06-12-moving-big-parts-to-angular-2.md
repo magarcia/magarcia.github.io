@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Moving bit parts to Angular 2
+title: Moving big parts to Angular 2
 tags:
   - GSoC
   - Jangouts
