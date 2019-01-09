@@ -1,10 +1,15 @@
 const postsFolder = './_posts/';
 const fs = require('fs');
 
+const range = size =>
+  Array(size)
+    .fill(1)
+    .map((x, y) => x + y);
+
 module.exports = {
   exportPathMap: function() {
-    const posts = fs
-      .readdirSync(postsFolder)
+    const files = fs.readdirSync(postsFolder);
+    const posts = files
       .map(filename => {
         const [year, month, day, ...idParts] = filename.split('-');
         const id = idParts.join('-').replace('.md', '');
@@ -18,10 +23,15 @@ module.exports = {
       })
       .reduce((accu, [url, params]) => ({ ...accu, [url]: params }), {});
 
+    const pages = range(Math.ceil(files.length / 5))
+      .map(page => [`/blog/page/${page}`, { page: `/`, query: { page } }])
+      .reduce((accu, [url, params]) => ({ ...accu, [url]: params }), {});
+
     return {
       '/': { page: '/' },
       '/about': { page: '/about' },
-      ...posts
+      ...posts,
+      ...pages
     };
   }
 };

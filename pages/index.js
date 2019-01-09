@@ -5,6 +5,7 @@ import remarkReact from 'remark-react';
 import Layout from '../components/Layout';
 import MetaInfo from '../components/MetaInfo';
 import Content from '../components/Content';
+import Pagination from '../components/Pagination';
 
 const PostLink = ({ year, month, day, slug, title, intro, readingTime }) => (
   <li>
@@ -37,8 +38,6 @@ const PostLink = ({ year, month, day, slug, title, intro, readingTime }) => (
         overflow: hidden;
         max-height: 84px;
         text-overflow: ellipsis;
-        font-family: medium-content-sans-serif-font, 'Lucida Grande', 'Lucida Sans Unicode',
-          'Lucida Sans', Geneva, Arial, sans-serif !important;
       }
       li {
         margin-bottom: 48px;
@@ -47,13 +46,14 @@ const PostLink = ({ year, month, day, slug, title, intro, readingTime }) => (
   </li>
 );
 
-const App = ({ files }) => (
+const App = ({ results, page, total }) => (
   <Layout>
     <ul>
-      {files.map(props => {
+      {results.map(props => {
         return <PostLink key={props.id} {...props} />;
       })}
     </ul>
+    <Pagination total={total} page={page} />
     <style jsx={true}>{`
       ul {
         list-style: none;
@@ -63,11 +63,12 @@ const App = ({ files }) => (
 );
 
 App.getInitialProps = async function(context) {
-  const url = `http://localhost:3000/_posts/`;
+  const page = parseInt(context.query.page, 10) || 1;
+  const url = `http://localhost:3000/_posts/?limit=5&page=${page}`;
   const res = await fetch(url);
-  const files = await res.json();
+  const response = await res.json();
 
-  return { files };
+  return response;
 };
 
 export default App;

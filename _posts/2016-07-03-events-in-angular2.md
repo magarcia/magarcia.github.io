@@ -10,7 +10,7 @@ During the migration of the feed component, I found a some lines that I didn't
 know how to code it on Angular 2. The following gist is an extract of the code
 I'm talking about:
 
-<script src="https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=jh-feed.directive.js"></script>
+`gist:https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=jh-feed.directive.js`
 
 As you can see in the snippet, if the condition is true then the directive
 listens for events of type `muted.byRequest`, `muted.byUser` and `muted.Join`.
@@ -24,14 +24,16 @@ so I have to find a solution. After search for a solution I found [this entry](h
 in laco's blog.
 
 ## Broadcaster
+
 Basicaly the idea is to make a service that implements the `$broadcast` and
 `$on` method like we had in `$rootScope`. For do this we use Observables, very
 important in Angular 2, and in this case we use a [Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md).
-<script src="https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=broadcaster.ts"></script>
+
+`gist:https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=broadcaster.ts`
 
 So, now we can start to use events like in the example:
 
-<script src="https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=example.component.ts"></script>
+`gist:https://gist.github.com/magarcia/0a299cc1d352ad7e42a46d72817bc035.js?file=example.component.ts`
 
 ## How I solved the problem?
 

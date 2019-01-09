@@ -13,7 +13,7 @@ another thing that not exist in Angular 2: `$watch`.
 I start defining the problem. We can have a directive or Angular 1 component
 like that:
 
-<script src="https://gist.github.com/magarcia/384af019aef2ef465f3e08c5b8f905ec.js?file=example.directive.js"></script>
+`gist:https://gist.github.com/magarcia/384af019aef2ef465f3e08c5b8f905ec.js?file=example.directive.js`
 
 If we want to migrate this code to Angular 2 we find a trouble: the new Angular
 don't have `scope`, so it don't have `$watch`. How we can watch a directive
@@ -27,4 +27,4 @@ _From [MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Funct
 So we can bind the input for a component to a function that do the same as the
 `$watch` function.
 
-<script src="https://gist.github.com/magarcia/384af019aef2ef465f3e08c5b8f905ec.js?file=example.component.ts"></script>
+`gist:https://gist.github.com/magarcia/384af019aef2ef465f3e08c5b8f905ec.js?file=example.component.ts`

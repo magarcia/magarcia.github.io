@@ -28,6 +28,10 @@ const getFileInfo = (filename, fullContent = false) => {
   };
 };
 
+function paginate(array, page = 1, limit = 5) {
+  return array.slice((page - 1) * limit, page * limit);
+}
+
 app
   .prepare()
   .then(() => {
@@ -35,7 +39,15 @@ app
 
     server.get('/_posts', function(req, res) {
       glob('./_posts/*.md', {}, function(er, files) {
-        res.send(files.reverse().map(f => getFileInfo(f)));
+        const page = parseInt(req.query.page, 10) || 1;
+        const limit = parseInt(req.query.limit, 10) || 5;
+        const results = paginate(files.reverse(), page, limit).map(f => getFileInfo(f));
+        res.send({
+          page,
+          limit,
+          total: Math.ceil(files.length / limit),
+          results
+        });
       });
     });
     server.get('/_posts/:filename', function(req, res) {
@@ -47,6 +59,12 @@ app
       const actualPage = '/post';
       const { year, month, day, id } = req.params;
       app.render(req, res, actualPage, { year, month, day, id });
+    });
+
+    server.get('/blog/page/:page', (req, res) => {
+      const actualPage = '/';
+      const { page } = req.params;
+      app.render(req, res, actualPage, { page });
     });
 
     server.get('*', (req, res) => {

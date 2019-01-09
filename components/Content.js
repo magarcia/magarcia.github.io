@@ -2,15 +2,17 @@ export default ({ children, small = false }) => (
   <div className="post-content">
     {children}
     <style jsx={true} global>{`
+      .post-content {
+        color: rgba(0, 0, 0, 0.84);
+      }
       .post-content p {
-        font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;
         letter-spacing: 0.01rem;
         font-weight: 400;
         font-style: normal;
         font-size: ${small ? '16px' : '21px'};
         line-height: 1.58;
         margin-top: 29px;
-        color: ${small ? 'rgba(0,0,0,.54)' : 'inherit'};
+        color: ${small ? 'rgba(0,0,0,.54)' : 'rgba(0, 0, 0, 0.84)'};
       }
       .post-content a {
         text-decoration: none;
@@ -33,7 +35,6 @@ export default ({ children, small = false }) => (
         padding-left: 20px;
         margin-left: -23px;
         padding-bottom: 2px;
-        font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;
         letter-spacing: 0.01rem;
         font-weight: 400;
         font-size: 21px;
@@ -48,8 +49,6 @@ export default ({ children, small = false }) => (
         margin: 0;
         margin-top: 56px;
         font-weight: 600;
-        font-family: medium-content-sans-serif-font, 'Lucida Grande', 'Lucida Sans Unicode',
-          'Lucida Sans', Geneva, Arial, sans-serif;
         font-style: normal;
         letter-spacing: 0;
         font-size: 34px;
@@ -60,8 +59,6 @@ export default ({ children, small = false }) => (
         margin-top: 30px;
         margin: 0;
         font-weight: 600;
-        font-family: medium-content-sans-serif-font, 'Lucida Grande', 'Lucida Sans Unicode',
-          'Lucida Sans', Geneva, Arial, sans-serif;
         font-style: normal;
         letter-spacing: 0;
         font-size: 26px;
@@ -76,7 +73,6 @@ export default ({ children, small = false }) => (
         margin: 0;
       }
       .post-content ol li {
-        font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;
         font-weight: 400;
         font-style: normal;
         font-size: 21px;
@@ -105,6 +101,39 @@ export default ({ children, small = false }) => (
       }
       .post-content pre code {
         background: transparent;
+      }
+      .post-content ul {
+        margin-top: 29px;
+        counter-reset: post;
+        padding: 0;
+        list-style: none;
+        list-style-image: none;
+      }
+      .post-content ul > li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 21px;
+        line-height: 1.58;
+        margin-left: 30px;
+        margin-bottom: 14px;
+      }
+      .post-content ul > li:before {
+        position: absolute;
+        display: inline-block;
+        box-sizing: border-box;
+        width: 78px;
+        margin-left: -78px;
+        text-align: right;
+        padding-top: 4px;
+        padding-right: 15px;
+        content: '\\2022';
+        font-size: 16.8px;
+      }
+      .post-content b,
+      .post-content strong {
+        font-weight: 700;
       }
     `}</style>
   </div>

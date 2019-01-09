@@ -5,7 +5,7 @@ const Header = () => (
     <div className="content">
       <div className="block">
         <Link href="/">
-          <h1 className="title">Medium</h1>
+          <h1 className="title">magarcia</h1>
         </Link>
       </div>
       <div className="block right">
@@ -32,8 +32,6 @@ const Header = () => (
         font-size: 16px;
         background: #fff;
         color: rgba(0, 0, 0, 0.54);
-        font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         letter-spacing: 0;
         font-weight: 400;
         font-style: normal;

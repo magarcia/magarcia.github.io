@@ -7,8 +7,6 @@ export default ({ year, month, day, readingTime, small = false }) => (
     <span className="readingTime" title={readingTime.text} />
     <style jsx={true}>{`
       .postMetaInline {
-        font-family: medium-content-sans-serif-font, 'Lucida Grande', 'Lucida Sans Unicode',
-          'Lucida Sans', Geneva, Arial, sans-serif;
         font-weight: 400;
         font-style: normal;
         letter-spacing: 0;
