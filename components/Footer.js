@@ -3,7 +3,7 @@ export default () => (
     <div className="content">
       <span>Made with ❤️ from Barcelona</span>
     </div>
-    <style jsx={true}>{`
+    <style jsx="true">{`
       .footer {
         background: #fafafa;
         margin-top: 42px;

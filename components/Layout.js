@@ -3,13 +3,17 @@ import Footer from './Footer';
 
 const Layout = props => (
   <>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Open+Sans:600|Playfair+Display:700"
+      rel="stylesheet"
+    />
+
     <Header />
     <section className="body">
       <div className="inner">{props.children}</div>
     </section>
     <Footer />
-    <style jsx={true}>{`
-      @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Open+Sans:400,600');
+    <style jsx="true">{`
       .body {
         margin-top: 65px;
         padding-top: 20px;
@@ -41,7 +45,7 @@ const Layout = props => (
         box-sizing: border-box;
       }
     `}</style>
-    <style jsx={true} global>{`
+    <style jsx="true" global>{`
       body {
         margin: 0;
       }

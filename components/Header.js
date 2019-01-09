@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Gravatar from 'react-gravatar';
 
 const Header = () => (
   <div className="bar">
@@ -9,13 +10,18 @@ const Header = () => (
         </Link>
       </div>
       <div className="block right">
-        <Link href="/about">
+        {/* <Link href="/about">
           <a>About</a>
-        </Link>
+        </Link> */}
+        <Gravatar email="newluxfero@gmail.com" className="avatar" size={48} />
       </div>
     </div>
-    <style jsx={true}>{`
-      @import url('https://fonts.googleapis.com/css?family=Playfair+Display:700');
+    <style jsx="true" global>{`
+      .avatar {
+        border-radius: 32px;
+      }
+    `}</style>
+    <style jsx="true">{`
       a {
         text-decoration: none;
         color: rgba(0, 0, 0, 0.84);

@@ -5,7 +5,7 @@ export default ({ year, month, day, readingTime, small = false }) => (
     <Moment date={`${year}-${month}-${day}`} format="ll" />
     <span className="middotDivider" />
     <span className="readingTime" title={readingTime.text} />
-    <style jsx={true}>{`
+    <style jsx="true">{`
       .postMetaInline {
         font-weight: 400;
         font-style: normal;

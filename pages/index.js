@@ -25,7 +25,7 @@ const PostLink = ({ year, month, day, slug, title, intro, readingTime }) => (
       </Content>
     </div>
     <MetaInfo {...{ year, month, day, readingTime }} small={true} />
-    <style jsx={true} global>{`
+    <style jsx="true" global>{`
       .summary .post-content p {
         width: 100%;
         white-space: nowrap;
@@ -33,11 +33,12 @@ const PostLink = ({ year, month, day, slug, title, intro, readingTime }) => (
         text-overflow: ellipsis;
       }
     `}</style>
-    <style jsx={true}>{`
+    <style jsx="true">{`
       h2 {
         overflow: hidden;
         max-height: 84px;
         text-overflow: ellipsis;
+        cursor: pointer;
       }
       li {
         margin-bottom: 48px;
@@ -54,7 +55,7 @@ const App = ({ results, page, total }) => (
       })}
     </ul>
     <Pagination total={total} page={page} />
-    <style jsx={true}>{`
+    <style jsx="true">{`
       ul {
         list-style: none;
       }

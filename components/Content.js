@@ -1,7 +1,7 @@
 export default ({ children, small = false }) => (
   <div className="post-content">
     {children}
-    <style jsx={true} global>{`
+    <style jsx="true" global>{`
       .post-content {
         color: rgba(0, 0, 0, 0.84);
       }

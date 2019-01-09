@@ -1,12 +1,15 @@
 const postsFolder = './_posts/';
 const fs = require('fs');
+const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
+const withImages = require('next-images');
 
 const range = size =>
   Array(size)
     .fill(1)
     .map((x, y) => x + y);
 
-module.exports = {
+module.exports = withPlugins([withImages], [optimizedImages], {
   exportPathMap: function() {
     const files = fs.readdirSync(postsFolder);
     const posts = files
@@ -34,4 +37,4 @@ module.exports = {
       ...pages
     };
   }
-};
+});

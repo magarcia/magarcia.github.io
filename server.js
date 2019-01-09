@@ -37,6 +37,8 @@ app
   .then(() => {
     const server = express();
 
+    server.use(express.static('static'));
+
     server.get('/_posts', function(req, res) {
       glob('./_posts/*.md', {}, function(er, files) {
         const page = parseInt(req.query.page, 10) || 1;
