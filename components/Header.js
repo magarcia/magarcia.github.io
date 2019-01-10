@@ -6,7 +6,9 @@ const Header = () => (
     <div className="content">
       <div className="block">
         <Link href="/">
-          <h1 className="title">magarcia</h1>
+          <a>
+            <h1 className="title">magarcia</h1>
+          </a>
         </Link>
       </div>
       <div className="block right">
@@ -30,6 +32,13 @@ const Header = () => (
 
       a:hover {
         opacity: 0.6;
+      }
+      .title a {
+        font-size: inherit;
+        font-family: 'Playfair Display', serif;
+      }
+      .title a:hover {
+        opacity: 1;
       }
       .bar {
         position: absolute;

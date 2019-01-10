@@ -9,7 +9,7 @@ const range = size =>
     .fill(1)
     .map((x, y) => x + y);
 
-module.exports = withPlugins([withImages], [optimizedImages], {
+module.exports = withPlugins([withImages, optimizedImages], {
   exportPathMap: function() {
     const files = fs.readdirSync(postsFolder);
     const posts = files
@@ -36,5 +36,13 @@ module.exports = withPlugins([withImages], [optimizedImages], {
       ...posts,
       ...pages
     };
+  },
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader'
+    });
+
+    return config;
   }
 });

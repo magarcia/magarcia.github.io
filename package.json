@@ -15,7 +15,7 @@
     "url": "https://github.com/magarcia/magarcia.github.io/issues"
   },
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "export": "next export",

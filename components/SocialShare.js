@@ -2,12 +2,14 @@ import React from 'react';
 
 export default class SocialShare extends React.Component {
   state = {
-    visible: false
+    visible: false,
+    ssr: true
   };
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
     this.setState({
-      visible: window.pageYOffset > 90
+      visible: window.pageYOffset > 90,
+      ssr: false
     });
   }
 
@@ -23,7 +25,11 @@ export default class SocialShare extends React.Component {
   render() {
     const { url, title } = this.props;
     return (
-      <aside className={this.state.visible ? 'visible' : ''}>
+      <aside
+        className={
+          (this.state.visible ? 'visible' : '') + ' ' + (this.state.ssr ? 'ssr-animation' : '')
+        }
+      >
         <a
           title="Share on Twitter"
           aria-label="Share on Twitter"
@@ -84,6 +90,23 @@ export default class SocialShare extends React.Component {
           }
           aside a:hover {
             opacity: 1;
+          }
+          .ssr-animation {
+            animation-delay: 2s;
+            animation-duration: 0.3s;
+            animation-name: toggle;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+          }
+          @keyframes toggle {
+            from {
+              visibility: hidden;
+              opacity: 0;
+            }
+            to {
+              visibility: visible;
+              opacity: 1;
+            }
           }
         `}</style>
       </aside>

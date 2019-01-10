@@ -1,5 +1,6 @@
 import { withRouter } from 'next/router';
-import fetch from 'isomorphic-unfetch';
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
 import remark from 'remark';
 import remarkReact from 'remark-react';
 import Layout from '../components/Layout';
@@ -10,8 +11,6 @@ import SocialShare from '../components/SocialShare';
 const visit = require(`unist-util-visit`);
 
 const gistPlugin = () => {
-  const globalReact = require('react');
-  const globalCreateElement = globalReact.createElement;
   function isUrlValid(userInput) {
     var res = userInput.match(
       /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
@@ -109,9 +108,18 @@ const Post = ({ content, title, year, month, day, readingTime, slug }) => {
 
 Post.getInitialProps = async function(context) {
   const { id, year, month, day } = context.query;
-  const url = `http://localhost:3000/_posts/${year}-${month}-${day}-${id}`;
-  const res = await fetch(url);
-  return await res.json();
+  const post = await import(`../_posts/${year}-${month}-${day}-${id}.md`);
+  const document = matter(post.default);
+
+  return {
+    slug: id,
+    year,
+    month,
+    day,
+    content: document.content,
+    readingTime: readingTime(document.content),
+    title: document.data.title
+  };
 };
 
 export default withRouter(Post);
