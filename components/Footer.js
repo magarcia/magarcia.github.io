@@ -1,19 +1,9 @@
+import css from './Footer.module.css';
+
 export default () => (
-  <div className="footer">
-    <div className="content">
+  <div className={css.footer}>
+    <div className={css.footerContent}>
       <span>Made with ❤️ from Barcelona</span>
     </div>
-    <style jsx="true">{`
-      .footer {
-        background: #fafafa;
-        margin-top: 42px;
-      }
-      .content {
-        max-width: 1000px;
-        padding: 30px 0 40px 0;
-        margin: 0 auto;
-        text-align: center;
-      }
-    `}</style>
   </div>
 );

@@ -22,6 +22,7 @@
     "precommit": "NODE_ENV=production lint-staged"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "express": "^4.16.4",
     "gatsby-remark-embed-gist": "^1.1.4",
     "gray-matter": "^4.0.1",
