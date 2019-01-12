@@ -1,0 +1,141 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8" class="next-head"/><title class="next-head">magarcia</title><link rel="preload" href="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/post.js" as="script"/><link rel="preload" href="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/_error.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-1c1c3136e0f7012e8706.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.fe229520576991e872e2.js" as="script"/><link rel="preload" href="/_next/static/chunks/styles.b51f4f1115dec62a42ce.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-a455fdec3098400745ef.js" as="script"/><link rel="stylesheet" href="/_next/static/css/styles.48128712.chunk.css"/><style id="__jsx-1828670626">aside.jsx-1828670626{position:fixed;top:150px;margin-left:-100px;visibility:hidden;opacity:0;-webkit-transition:visibility 0s linear 0.3s,opacity 0.3s 0s;transition:visibility 0s linear 0.3s,opacity 0.3s 0s;}
+aside.visible.jsx-1828670626{visibility:visible;opacity:1;-webkit-transition:visibility 0s linear 0s,opacity 0.3s 0s;transition:visibility 0s linear 0s,opacity 0.3s 0s;}
+aside.jsx-1828670626 a.jsx-1828670626{font-size:17px;color:rgba(0,0,0,0.84);opacity:0.65;display:block;position:relative;background:rgba(0,0,0,0);-webkit-text-decoration:none;text-decoration:none;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:none;box-sizing:border-box;margin:10px 3px;}
+aside.jsx-1828670626 a.jsx-1828670626:hover{opacity:1;}
+.ssr-animation.jsx-1828670626{-webkit-animation-delay:2s;animation-delay:2s;-webkit-animation-duration:0.3s;animation-duration:0.3s;-webkit-animation-name:toggle-jsx-1828670626;animation-name:toggle-jsx-1828670626;-webkit-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;}
+@-webkit-keyframes toggle-jsx-1828670626{from{visibility:hidden;opacity:0;}to{visibility:visible;opacity:1;}}
+@keyframes toggle-jsx-1828670626{from{visibility:hidden;opacity:0;}to{visibility:visible;opacity:1;}}</style><link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Open+Sans:600|Playfair+Display:700" rel="stylesheet"/></head><body><div id="__next"><div class="components-___bar___7MxMj"><div class="components-___content___HrAga"><div class="components-___block___9skge"><a href="/"><h1 class="components-___title___1CN1y">magarcia</h1></a></div><div class="components-___block___9skge components-___right___1Sapt"><img alt="Gravatar for newluxfero@gmail.com" src="//www.gravatar.com/avatar/eaf59739836cc2f138c202d05256323d?d=retro&amp;r=g&amp;s=48" srcSet="//www.gravatar.com/avatar/eaf59739836cc2f138c202d05256323d?d=retro&amp;r=g&amp;s=96 2x" height="48" width="48" class="react-gravatar components-___avatar___1cxk3"/></div></div></div><section class="components-___body___1FoQ0"><div class="components-___inner___J7ZR7"><article class="pages-___article___1w_PM"><h1 class="pages-___title___3e1JJ">First coding week</h1><div class="components-___postMetaInline___1GBEP "><time dateTime="1464472800000">May 29, 2016</time><span class="components-___middotDivider___yt1kO"></span><span class="components-___readingTime___1s3hq" title="6 min read"></span></div><div class="components-___postContent___3mFwM"><p>First week of coding period at GSoC 2016, so I started the upgrading process of
+Jangouts from Angular 1.x to Angular 2. This week, the tasks have been
+fulfilled within the deadline, I hope to remain so for the next week.</p>
+<p>I&#x27;m following the <a href="https://angular.io/docs/ts/latest/guide/upgrade.html">upgrade guide</a>
+from official Angular docs, which has two main blocks:</p>
+<ul>
+<li>Preparation</li>
+<li>Upgrading with The Upgrade Adapter</li>
+</ul>
+<p>I just finished the preparation block. I was lucky because the code of Jangouts
+is really clear and it follow two important points of the preparation block:
+Follow the Angular style guide and use component directives. So this left me
+only two things to do. First of all, switch from load files with <code>&lt;script&gt;</code>
+tags to a module loader and then migrate the code from JavaScript to TypeScript.
+But I&#x27;ve done it in reverse order, first migrate to TypeScript and then switch to
+a module loader. Why? I think this way is more &quot;natural&quot;, at least for this project.</p>
+<h2>Migrating to TypeScript</h2>
+<p>Jangouts has a gulp build system working, so I didn&#x27;t have to worry about how
+the scripts are loaded. First I worry about migrating the files to TypeScript
+and when all was ready, then I try to take profit from the <code>import</code> syntax of
+TypeScript/ES6.</p>
+<p>Migrate code from JavaScript to TypeScript is really easy, only need to change
+the extension form <code>.js</code> to <code>.ts</code>. Obviously the existing gulp system not works
+with this changes, so in parallel of running gulp you should run
+<code>tsc --watch src/**/*.ts</code>. This command shows a lot of errors but don&#x27;t worry
+about that, if the JavaScript code is correct all this errors are related to the
+type checking process of TypeScript compiler.</p>
+<p>During this migration process, I also perform some changes in the code for make
+it more modular. Jangouts have all the components registered in the same Angular
+module <code>janusHangouts</code> and in other projects I worked before I learnt that this
+can make some troubles when you have to done unit testing, so I define a
+different module for each component (<code>janusHangouts.componentName</code>)
+and then make it a dependency of the main module. This have to advantages: make
+tests is more easy and in a future we can load components on demand with a
+module loader (but I&#x27;m not sure about the last one).</p>
+<p>Back to some I said earlier, when compile the JavaScript code with <code>tsc</code> this
+shows a lot of errors. One that could appear a lot is something like this:</p>
+<blockquote>
+<p><code>error TS7006: Parameter &#x27;$state&#x27; implicitly has an &#x27;any&#x27; type.</code></p>
+</blockquote>
+<p>This is because TypeScript compiler wants a type defined for all variables, but
+we can make that <code>tsc</code> set the implicit type any for variables without type.
+Only thing to do is disable the option <code>noImplicitAny</code> in the <code>tsconfig.json</code>
+file.</p>
+<p>Another error we can find when working with HTML elements is:</p>
+<blockquote>
+<p><code>error TS2339: Property &#x27;muted&#x27; does not exist on type &#x27;HTMLElement&#x27;.</code></p>
+</blockquote>
+<p>This error is produced from a code like that:</p>
+<pre><code>var video = $(&#x27;video&#x27;, element)[0];
+video.muted = true;
+</code></pre>
+<p>The error is produced because TypeScript is type save. So the
+<code>$(&#x27;video&#x27;, element)[0]</code> returns the type <code>HTMLElement</code> which does not contain
+a <code>muted</code> property. The subtype <code>HTMLVideoElement</code> does however contain the
+<code>muted</code> property. So the solution is to cast the result to <code>HTMLVideoElement</code>
+like this:</p>
+<pre><code>var video = &lt;HTMLVideoElement&gt;$(&#x27;video&#x27;, element)[0];
+video.muted = true;
+</code></pre>
+<p>Finally, another common error is:</p>
+<blockquote>
+<p><code>error TS2339: Property &#x27;id&#x27; does not exist on type &#x27;{}&#x27;.</code></p>
+</blockquote>
+<p>This is another &quot;problem&quot; produced by the type validations of TypeScript. We can
+found errors like that in fragments of code similar to:</p>
+<pre><code>var room = {};
+
+// Some code here...
+
+function isRoom (room) {
+    return room.id == roomId;
+}
+</code></pre>
+<p>To solve this and make the code less error prone, we should define an interface
+for the room object.</p>
+<pre><code>interface Room {
+    id?: number  // ? makes the attribute optional
+}
+
+// Some code here ...
+
+var room: Room = {};
+
+// Some code here...
+
+function isRoom (room: Room) {
+    return room.id == roomId;
+}
+</code></pre>
+<h2>Using a Module Loader</h2>
+<p>Why we should use a module loader? We can find the response in Angular site:</p>
+<blockquote>
+<p>Using a module loader such as <a href="https://github.com/systemjs/systemjs">SystemJS</a>,
+<a href="http://webpack.github.io/">Webpack</a>, or <a href="http://browserify.org/">Browserify</a>
+allows us to use the built-in module systems of the TypeScript or ES2015
+languages in our apps. We can use the import and export features that explicitly
+specify what code can and will be shared between different parts of the
+application. <!-- -->[...]</p>
+<p>When we then take our applications into production, module loaders also make
+it easier to package them all up into production bundles with batteries
+included.</p>
+</blockquote>
+<p>I discard Browserify because I had bad experiences in the past. So I have only
+tried with SystemJS and Webpack.</p>
+<h3>SystemJS</h3>
+<p>SystemJS looks really clean, really simple. The only thing I was to do is define
+an entry point (normally the main file of the application) and the <code>import</code>
+syntax do the rest. So, if we have the <code>import</code> statements correctly placed, all
+works without problem.</p>
+<p>But with this solution, we need to conserve gulp, because SystemJS only cares
+about the imports. So this implies add the TypesScript compiler to gulp and
+disable the auto inject of script ins html.</p>
+<p>Sincerely I didn&#x27;t try that, before try to rewrite the gulp configuration I
+wanted to have a look at Webpack first.</p>
+<h3>Webpack</h3>
+<p>The configuration of Webpack is more complex than SystemJS, but it gives a
+substitution of gulp. As SystemJS does, we need to define an entry point for the
+application and also tell him where is the <code>index.html</code> to include the
+JavaScript files.</p>
+<p>Initially I had some troubles, but after looking some examples, I had a
+functional version. Exploring more depth in Webpack I found something that make
+me choose it before others: we can <code>import</code> or <code>require</code> non JavaScript files.
+So we can do things like require the template of an Angular directive, and in
+the building process this template will be included as a string variable inside
+the component, and with styles we have the same feature. This functionality
+improves the final build of the application, because all the files needed by a
+component will be placed inside the JavaScript file of the component, improving
+the performance but without make difficult program it.</p>
+<h2>One more thing</h2>
+<p>This summer looks exciting with all the things I have to learn with GSoC. If
+you want to follow the progress of what I&#x27;m doing keep update of this blog or
+follow my contributions on GitHub. Also I published a
+<a href="https://trello.com/b/vtQJBxbf/jangouts">Trello board</a> with the planning and
+things to do with this project (not fully update yet but in progress).</p></div></article><aside class="jsx-1828670626  ssr-animation"><a title="Share on Twitter" aria-label="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text=First coding week&amp;url=https://magarcia.github.io/2016/05/29/first-coding-week&amp;via=martinprins" class="jsx-1828670626"><svg width="20" height="20" viewBox="0 0 24 24" class="jsx-1828670626"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" class="jsx-1828670626"></path></svg></a><a title="Share on Facebook" aria-label="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://magarcia.github.io/2016/05/29/first-coding-week" class="jsx-1828670626"><svg width="20" height="20" viewBox="0 0 24 24" class="jsx-1828670626"><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294H9.689v-3.621h3.129V8.41c0-3.099 1.894-4.785 4.659-4.785 1.325 0 2.464.097 2.796.141v3.24h-1.921c-1.5 0-1.792.721-1.792 1.771v2.311h3.584l-.465 3.63H16.56V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .593 23.408 0 22.676 0" class="jsx-1828670626"></path></svg></a><a title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://magarcia.github.io/2016/05/29/first-coding-week&amp;title=First coding week&amp;source=https%3A//www.linkedin.com/in/martingarciamonterde/" class="jsx-1828670626"><svg width="20" height="20" viewBox="0 0 24 24" class="jsx-1828670626"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" class="jsx-1828670626"></path></svg></a></aside></div></section><div class="components-___footer___229iY"><div class="components-___footerContent___3zrKr"><span>Made with ❤️ from Barcelona</span></div></div></div><script>__NEXT_DATA__ = {"props":{"pageProps":{"slug":"first-coding-week","year":"2016","month":"05","day":"29","content":"\nFirst week of coding period at GSoC 2016, so I started the upgrading process of\nJangouts from Angular 1.x to Angular 2. This week, the tasks have been\nfulfilled within the deadline, I hope to remain so for the next week.\n\nI'm following the [upgrade guide](https://angular.io/docs/ts/latest/guide/upgrade.html)\nfrom official Angular docs, which has two main blocks:\n\n- Preparation\n- Upgrading with The Upgrade Adapter\n\nI just finished the preparation block. I was lucky because the code of Jangouts\nis really clear and it follow two important points of the preparation block:\nFollow the Angular style guide and use component directives. So this left me\nonly two things to do. First of all, switch from load files with `\u003cscript\u003e`\ntags to a module loader and then migrate the code from JavaScript to TypeScript.\nBut I've done it in reverse order, first migrate to TypeScript and then switch to\na module loader. Why? I think this way is more \"natural\", at least for this project.\n\n## Migrating to TypeScript\nJangouts has a gulp build system working, so I didn't have to worry about how\nthe scripts are loaded. First I worry about migrating the files to TypeScript\nand when all was ready, then I try to take profit from the `import` syntax of\nTypeScript/ES6.\n\nMigrate code from JavaScript to TypeScript is really easy, only need to change\nthe extension form `.js` to `.ts`. Obviously the existing gulp system not works\nwith this changes, so in parallel of running gulp you should run\n`tsc --watch src/**/*.ts`. This command shows a lot of errors but don't worry\nabout that, if the JavaScript code is correct all this errors are related to the\ntype checking process of TypeScript compiler.\n\nDuring this migration process, I also perform some changes in the code for make\nit more modular. Jangouts have all the components registered in the same Angular\nmodule `janusHangouts` and in other projects I worked before I learnt that this\ncan make some troubles when you have to done unit testing, so I define a\ndifferent module for each component (`janusHangouts.componentName`)\nand then make it a dependency of the main module. This have to advantages: make\ntests is more easy and in a future we can load components on demand with a\nmodule loader (but I'm not sure about the last one).\n\nBack to some I said earlier, when compile the JavaScript code with `tsc` this\nshows a lot of errors. One that could appear a lot is something like this:\n\n\u003e `error TS7006: Parameter '$state' implicitly has an 'any' type.`\n\nThis is because TypeScript compiler wants a type defined for all variables, but\nwe can make that `tsc` set the implicit type any for variables without type.\nOnly thing to do is disable the option `noImplicitAny` in the `tsconfig.json`\nfile.\n\nAnother error we can find when working with HTML elements is:\n\n\u003e `error TS2339: Property 'muted' does not exist on type 'HTMLElement'.`\n\nThis error is produced from a code like that:\n\n```javascript\nvar video = $('video', element)[0];\nvideo.muted = true;\n```\n\nThe error is produced because TypeScript is type save. So the\n`$('video', element)[0]` returns the type `HTMLElement` which does not contain\na `muted` property. The subtype `HTMLVideoElement` does however contain the\n`muted` property. So the solution is to cast the result to `HTMLVideoElement`\nlike this:\n\n```javascript\nvar video = \u003cHTMLVideoElement\u003e$('video', element)[0];\nvideo.muted = true;\n```\n\nFinally, another common error is:\n\n\u003e `error TS2339: Property 'id' does not exist on type '{}'.`\n\nThis is another \"problem\" produced by the type validations of TypeScript. We can\nfound errors like that in fragments of code similar to:\n\n```javascript\nvar room = {};\n\n// Some code here...\n\nfunction isRoom (room) {\n\treturn room.id == roomId;\n}\n\n```\n\nTo solve this and make the code less error prone, we should define an interface\nfor the room object.\n\n```javascript\ninterface Room {\n\tid?: number  // ? makes the attribute optional\n}\n\n// Some code here ...\n\nvar room: Room = {};\n\n// Some code here...\n\nfunction isRoom (room: Room) {\n\treturn room.id == roomId;\n}\n```\n\n\n## Using a Module Loader\n\nWhy we should use a module loader? We can find the response in Angular site:\n\n\u003e Using a module loader such as [SystemJS](https://github.com/systemjs/systemjs),\n\u003e [Webpack](http://webpack.github.io/), or [Browserify](http://browserify.org/)\n\u003e allows us to use the built-in module systems of the TypeScript or ES2015\n\u003e languages in our apps. We can use the import and export features that explicitly\n\u003e specify what code can and will be shared between different parts of the\n\u003e application. [...]\n\u003e\n\u003e When we then take our applications into production, module loaders also make\n\u003e it easier to package them all up into production bundles with batteries\n\u003e included.\n\nI discard Browserify because I had bad experiences in the past. So I have only\ntried with SystemJS and Webpack.\n\n### SystemJS\nSystemJS looks really clean, really simple. The only thing I was to do is define\nan entry point (normally the main file of the application) and the `import`\nsyntax do the rest. So, if we have the `import` statements correctly placed, all\nworks without problem.\n\nBut with this solution, we need to conserve gulp, because SystemJS only cares\nabout the imports. So this implies add the TypesScript compiler to gulp and\ndisable the auto inject of script ins html.\n\nSincerely I didn't try that, before try to rewrite the gulp configuration I\nwanted to have a look at Webpack first.\n\n### Webpack\nThe configuration of Webpack is more complex than SystemJS, but it gives a\nsubstitution of gulp. As SystemJS does, we need to define an entry point for the\napplication and also tell him where is the `index.html` to include the\nJavaScript files.\n\nInitially I had some troubles, but after looking some examples, I had a\nfunctional version. Exploring more depth in Webpack I found something that make\nme choose it before others: we can `import` or `require` non JavaScript files.\nSo we can do things like require the template of an Angular directive, and in\nthe building process this template will be included as a string variable inside\nthe component, and with styles we have the same feature. This functionality\nimproves the final build of the application, because all the files needed by a\ncomponent will be placed inside the JavaScript file of the component, improving\nthe performance but without make difficult program it.\n\n\n## One more thing\n\nThis summer looks exciting with all the things I have to learn with GSoC. If\nyou want to follow the progress of what I'm doing keep update of this blog or\nfollow my contributions on GitHub. Also I published a\n[Trello board](https://trello.com/b/vtQJBxbf/jangouts) with the planning and\nthings to do with this project (not fully update yet but in progress).\n\n","readingTime":{"text":"6 min read","minutes":5.615,"time":336900.00000000006,"words":1123},"title":"First coding week"}},"page":"/post","query":{"year":"2016","month":"05","day":"29","id":"first-coding-week"},"buildId":"JoZFjfxwajfkHyjTUvJxP","nextExport":true};__NEXT_LOADED_PAGES__=[];__NEXT_REGISTER_PAGE=function(r,f){__NEXT_LOADED_PAGES__.push([r, f])}</script><script async="" id="__NEXT_PAGE__/post" src="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/post.js"></script><script async="" id="__NEXT_PAGE__/_app" src="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/_app.js"></script><script async="" id="__NEXT_PAGE__/_error" src="/_next/static/JoZFjfxwajfkHyjTUvJxP/pages/_error.js"></script><script src="/_next/static/runtime/webpack-1c1c3136e0f7012e8706.js" async=""></script><script src="/_next/static/chunks/commons.fe229520576991e872e2.js" async=""></script><script src="/_next/static/chunks/styles.b51f4f1115dec62a42ce.js" async=""></script><script src="/_next/static/runtime/main-a455fdec3098400745ef.js" async=""></script></body></html>
