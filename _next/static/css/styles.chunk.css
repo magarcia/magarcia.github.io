@@ -170,7 +170,7 @@ a {
   color: inherit;
 }
 .components-___postContent___3mFwM code {
-  font-family: Menlo, Monaco, 'Courier New', Courier, monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
   font-size: 16px;
   background: rgba(0, 0, 0, 0.05);
   padding: 3px 4px;
@@ -244,8 +244,14 @@ a {
   font-family: Menlo, Monaco, 'Courier New', Courier, monospace;
   font-size: 16px;
 }
+
 .components-___postContent___3mFwM pre code {
   background: transparent;
+  font-size: 13px;
+  line-height: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0;
 }
 .components-___postContent___3mFwM ul {
   margin-top: 29px;
@@ -305,6 +311,148 @@ a {
 
 .pages-___list___2r4z- {
   list-style: none;
+}
+
+.components-___aside___LIh0t {
+  position: fixed;
+  top: 150px;
+  margin-left: -100px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s 0s;
+}
+.components-___aside___LIh0t.components-___visible___2Iey5 {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 0.3s 0s;
+}
+.components-___aside___LIh0t a {
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.84);
+  opacity: 0.65;
+  display: block;
+  position: relative;
+  background: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  box-sizing: border-box;
+  margin: 10px 3px;
+}
+.components-___aside___LIh0t a:hover {
+  opacity: 1;
+}
+.components-___ssrAnimation___1cKKV {
+  animation-delay: 2s;
+  animation-duration: 0.3s;
+  animation-name: components-___toggle___1SbC2;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes components-___toggle___1SbC2 {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.pages-___article___1w_PM {
+  outline: 0;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+.pages-___title___3e1JJ {
+  padding-top: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-size: 42px;
+  margin: 0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fdf6e3;
+  color: #657b83;
+}
+
+.hljs,
+.hljs > span {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #93a1a1;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: #859900;
+}
+
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: #2aa198;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #268bd2;
+}
+
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #b58900;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #cb4b16;
+}
+
+.hljs-built_in,
+.hljs-deletion {
+  color: #dc322f;
+}
+
+.hljs-formula {
+  background: #eee8d5;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
 }
 
 
