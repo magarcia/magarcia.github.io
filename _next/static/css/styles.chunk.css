@@ -90,7 +90,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Arial,
+    sans-serif;
   font-weight: 600;
 }
 p,
@@ -98,7 +99,7 @@ span,
 ul,
 li,
 a {
-  font-family: 'Lora', serif;
+  font-family: 'Lora', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 .components-___page___36tLu {
@@ -287,32 +288,6 @@ a {
   font-weight: 700;
 }
 
-.components-___titleLink___2OtHt {
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.84);
-}
-.components-___titleLink___2OtHt h2 {
-  overflow: hidden;
-  max-height: 84px;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.components-___li___3Sf-7 {
-  margin-bottom: 48px;
-}
-.components-___summary___36EpG p {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pages-___list___2r4z- {
-  list-style: none;
-}
-
 .components-___aside___LIh0t {
   position: fixed;
   top: 150px;
@@ -366,7 +341,7 @@ a {
   word-break: break-word;
   word-wrap: break-word;
 }
-.pages-___title___3e1JJ {
+.pages-___contentTitle___2LOeo {
   padding-top: 16px;
   font-style: normal;
   font-weight: 400;
@@ -374,6 +349,7 @@ a {
   letter-spacing: 0;
   font-size: 42px;
   margin: 0;
+  font-family: 'Lora', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 .hljs {
@@ -453,6 +429,38 @@ a {
 
 .hljs-strong {
   font-weight: bold;
+}
+
+.components-___titleLink___2OtHt {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.84);
+}
+.components-___titleLink___2OtHt h2 {
+  overflow: hidden;
+  max-height: 84px;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.components-___li___3Sf-7 {
+  margin-bottom: 48px;
+}
+.components-___summary___36EpG p {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pages-___list___2r4z- {
+  padding-inline-start: 0px;
+  list-style: none;
+}
+@media all and (min-width: 768px) {
+  .pages-___list___2r4z- {
+    padding-inline-start: 40px;
+  }
 }
 
 
