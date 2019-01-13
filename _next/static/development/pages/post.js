@@ -110,6 +110,74 @@ Content.propTypes = {
 
 /***/ }),
 
+/***/ "./components/Image.js":
+/*!*****************************!*\
+  !*** ./components/Image.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/magarcia/Dev/blog/components/Image.js";
+
+
+
+var ctx = __webpack_require__("./static/img sync recursive \\.(png|jpe?g|svg|webp)$");
+
+var Image = function Image(_ref) {
+  var originalSrc = _ref.src,
+      originalAlt = _ref.alt;
+  var imagePath = originalSrc.replace('../static/img/', './');
+  var src = ctx(imagePath);
+  var alt = originalAlt;
+  var webpPath = imagePath.replace(/\.(png|jpe?g|svg)$/, '.webp');
+  var webpSrc = ctx.keys().includes(webpPath) ? ctx(webpPath) : undefined;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  }, webpSrc && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    type: "image/webp",
+    srcSet: webpSrc,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    type: "image/jpeg",
+    srcSet: src,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: src,
+    alt: alt,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }));
+};
+
+Image.propTypes = {
+  src: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  alt: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (Image);
+
+/***/ }),
+
 /***/ "./components/MetaInfo.js":
 /*!********************************!*\
   !*** ./components/MetaInfo.js ***!
@@ -59455,10 +59523,11 @@ var hast_util_sanitize_lib_github_json__WEBPACK_IMPORTED_MODULE_10___namespace =
 /* harmony import */ var _components_MetaInfo__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/MetaInfo */ "./components/MetaInfo.js");
 /* harmony import */ var _components_Content__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/Content */ "./components/Content.js");
 /* harmony import */ var _components_SocialShare__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/SocialShare */ "./components/SocialShare.js");
-/* harmony import */ var _post_module_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./post.module.css */ "./pages/post.module.css");
-/* harmony import */ var _post_module_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_post_module_css__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _highlightjs_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./highlightjs.css */ "./pages/highlightjs.css");
-/* harmony import */ var _highlightjs_css__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_highlightjs_css__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _components_Image__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/Image */ "./components/Image.js");
+/* harmony import */ var _post_module_css__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./post.module.css */ "./pages/post.module.css");
+/* harmony import */ var _post_module_css__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_post_module_css__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _highlightjs_css__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./highlightjs.css */ "./pages/highlightjs.css");
+/* harmony import */ var _highlightjs_css__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_highlightjs_css__WEBPACK_IMPORTED_MODULE_18__);
 
 var _jsxFileName = "/Users/magarcia/Dev/blog/pages/post.js";
 
@@ -59514,6 +59583,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
 var schema = Object.assign({}, hast_util_sanitize_lib_github_json__WEBPACK_IMPORTED_MODULE_10__, {
   attributes: Object.assign({}, hast_util_sanitize_lib_github_json__WEBPACK_IMPORTED_MODULE_10__.attributes, {
     code: [].concat(_toConsumableArray(hast_util_sanitize_lib_github_json__WEBPACK_IMPORTED_MODULE_10__.attributes.code || []), ['className'])
@@ -59544,17 +59614,17 @@ function (_Component) {
           slug = _this$props.slug;
       var url = "https://magarcia.github.io/".concat(year, "/").concat(month, "/").concat(day, "/").concat(slug);
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("article", {
-        className: _post_module_css__WEBPACK_IMPORTED_MODULE_16___default.a.article,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 58
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-        className: _post_module_css__WEBPACK_IMPORTED_MODULE_16___default.a.contentTitle,
+        className: _post_module_css__WEBPACK_IMPORTED_MODULE_17___default.a.article,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 59
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+        className: _post_module_css__WEBPACK_IMPORTED_MODULE_17___default.a.contentTitle,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 60
         },
         __self: this
       }, title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_MetaInfo__WEBPACK_IMPORTED_MODULE_13__["default"], _extends({
@@ -59565,13 +59635,13 @@ function (_Component) {
       }, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 61
         },
         __self: this
       })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Content__WEBPACK_IMPORTED_MODULE_14__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 62
         },
         __self: this
       }, remark__WEBPACK_IMPORTED_MODULE_7___default()().use(remark_react__WEBPACK_IMPORTED_MODULE_8___default.a, {
@@ -59581,6 +59651,7 @@ function (_Component) {
             ts: highlight_js_lib_languages_typescript__WEBPACK_IMPORTED_MODULE_11___default.a,
             js: highlight_js_lib_languages_javascript__WEBPACK_IMPORTED_MODULE_12___default.a
           }),
+          img: _components_Image__WEBPACK_IMPORTED_MODULE_16__["default"],
           p: function p(_ref) {
             var children = _ref.children;
 
@@ -59594,7 +59665,7 @@ function (_Component) {
                 allowFullScreen: true,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 74
+                  lineNumber: 76
                 },
                 __self: this
               });
@@ -59603,7 +59674,7 @@ function (_Component) {
             return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 84
+                lineNumber: 86
               },
               __self: this
             }, children);
@@ -59614,7 +59685,7 @@ function (_Component) {
         url: url,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 94
         },
         __self: this
       }));
@@ -59701,7 +59772,232 @@ _defineProperty(Post, "propTypes", {
 
 /***/ }),
 
-/***/ 14:
+/***/ "./static/img sync recursive \\.(png|jpe?g|svg|webp)$":
+/*!*************************************************!*\
+  !*** ./static/img sync \.(png|jpe?g|svg|webp)$ ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./angularbeers-with-misko-hevery.jpg": "./static/img/angularbeers-with-misko-hevery.jpg",
+	"./angularbeers-with-misko-hevery.webp": "./static/img/angularbeers-with-misko-hevery.webp",
+	"./cities/amsterdam.png": "./static/img/cities/amsterdam.png",
+	"./cities/austin.png": "./static/img/cities/austin.png",
+	"./cities/barcelona.png": "./static/img/cities/barcelona.png",
+	"./cities/berlin.png": "./static/img/cities/berlin.png",
+	"./cities/cape-town.png": "./static/img/cities/cape-town.png",
+	"./cities/dublin.png": "./static/img/cities/dublin.png",
+	"./cities/london.png": "./static/img/cities/london.png",
+	"./cities/new-york.png": "./static/img/cities/new-york.png",
+	"./cities/paris.png": "./static/img/cities/paris.png",
+	"./cities/san-francisco.png": "./static/img/cities/san-francisco.png",
+	"./cities/stockholm.png": "./static/img/cities/stockholm.png",
+	"./cities/sydney.png": "./static/img/cities/sydney.png",
+	"./cities/tokyo.png": "./static/img/cities/tokyo.png",
+	"./cities/wellington.png": "./static/img/cities/wellington.png"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./static/img sync recursive \\.(png|jpe?g|svg|webp)$";
+
+/***/ }),
+
+/***/ "./static/img/angularbeers-with-misko-hevery.jpg":
+/*!*******************************************************!*\
+  !*** ./static/img/angularbeers-with-misko-hevery.jpg ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/angularbeers-with-misko-hevery-cc4c90d4e876355248d820f1cab4b58f.jpg";
+
+/***/ }),
+
+/***/ "./static/img/angularbeers-with-misko-hevery.webp":
+/*!********************************************************!*\
+  !*** ./static/img/angularbeers-with-misko-hevery.webp ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/angularbeers-with-misko-hevery-e5361667e0a548f8229c5342b633d853.webp";
+
+/***/ }),
+
+/***/ "./static/img/cities/amsterdam.png":
+/*!*****************************************!*\
+  !*** ./static/img/cities/amsterdam.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/amsterdam-ed6127c6ae1d80ba992774dc73f1ac3e.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/austin.png":
+/*!**************************************!*\
+  !*** ./static/img/cities/austin.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/austin-63582b75a6d0f7ed7e06aff3f5698fe0.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/barcelona.png":
+/*!*****************************************!*\
+  !*** ./static/img/cities/barcelona.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/barcelona-fffcd63bb6a8d749721c50af8f6b955d.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/berlin.png":
+/*!**************************************!*\
+  !*** ./static/img/cities/berlin.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/berlin-c6399e21bda443a0964979c2ff78281e.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/cape-town.png":
+/*!*****************************************!*\
+  !*** ./static/img/cities/cape-town.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/cape-town-17e6506c71c229c2e8b25b17fe694f16.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/dublin.png":
+/*!**************************************!*\
+  !*** ./static/img/cities/dublin.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/dublin-6809e7120cbb2ddfb9d8cd6edea8079b.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/london.png":
+/*!**************************************!*\
+  !*** ./static/img/cities/london.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/london-9c3e1a97c5b2f9a90a1f7a41a55c145f.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/new-york.png":
+/*!****************************************!*\
+  !*** ./static/img/cities/new-york.png ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/new-york-8977160f5f1b2d366d5cd278c0740416.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/paris.png":
+/*!*************************************!*\
+  !*** ./static/img/cities/paris.png ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/paris-8191ba01c37dfe511be7e28acc5b124f.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/san-francisco.png":
+/*!*********************************************!*\
+  !*** ./static/img/cities/san-francisco.png ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/san-francisco-518d56a7c06d4adcdb8301725bf0bd97.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/stockholm.png":
+/*!*****************************************!*\
+  !*** ./static/img/cities/stockholm.png ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/stockholm-2f24f436b1255232d80147a9e7a14300.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/sydney.png":
+/*!**************************************!*\
+  !*** ./static/img/cities/sydney.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/sydney-437f7fd73d009bb08cd03a87621be5bd.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/tokyo.png":
+/*!*************************************!*\
+  !*** ./static/img/cities/tokyo.png ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/tokyo-6d0b4a3195cead3558df97c4b3add4fa.png";
+
+/***/ }),
+
+/***/ "./static/img/cities/wellington.png":
+/*!******************************************!*\
+  !*** ./static/img/cities/wellington.png ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/_next/static/images/wellington-8a9c38210fe1c5046d37ba4781b7c211.png";
+
+/***/ }),
+
+/***/ 7:
 /*!*****************************!*\
   !*** multi ./pages/post.js ***!
   \*****************************/
@@ -59737,5 +60033,5 @@ module.exports = dll_831a3634f66cb1dada0c;
 
 /***/ })
 
-},[[14,"static/runtime/webpack.js","styles"]]]));;
+},[[7,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=post.js.map
