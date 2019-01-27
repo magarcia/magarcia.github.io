@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{497:function(n,o){n.exports="---\nlayout: post\ntitle: Hello World\n---\n\nAs any other start in Computer Science:\n\n> Hello World\n"}}]);

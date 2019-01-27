@@ -1,103 +1,146 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" class="next-head"/><title class="next-head">magarcia</title><link rel="preload" href="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/post.js" as="script"/><link rel="preload" href="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/_error.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-854838f6492464a6e822.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.96d3ccb2a99a60acf2a6.js" as="script"/><link rel="preload" href="/_next/static/chunks/styles.7d2dab4d8b7bac832de9.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-377bc1082149a53398fc.js" as="script"/><link rel="stylesheet" href="/_next/static/css/styles.4702bfcb.chunk.css"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=contain"/><link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Open+Sans:600|Playfair+Display:700" rel="stylesheet"/></head><body><div id="__next"><div class="components-___bar___7MxMj"><div class="components-___content___HrAga"><div class="components-___block___9skge"><a href="/"><h1 class="components-___title___1CN1y">magarcia</h1></a></div><div class="components-___block___9skge components-___right___1Sapt"><img alt="Gravatar for newluxfero@gmail.com" src="//www.gravatar.com/avatar/eaf59739836cc2f138c202d05256323d?d=retro&amp;r=g&amp;s=48" srcSet="//www.gravatar.com/avatar/eaf59739836cc2f138c202d05256323d?d=retro&amp;r=g&amp;s=96 2x" height="48" width="48" class="react-gravatar components-___avatar___1cxk3"/></div></div></div><section class="components-___body___1FoQ0"><div class="components-___inner___J7ZR7"><article class="pages-___article___1w_PM"><h1 class="pages-___contentTitle___2LOeo">Events in Angular2</h1><div class="components-___postMetaInline___1GBEP "><time dateTime="1467496800000">Jul 3, 2016</time><span class="components-___middotDivider___yt1kO"></span><span class="components-___readingTime___1s3hq" title="3 min read"></span></div><div class="components-___postContent___3mFwM"><p>During the migration of the feed component, I found a some lines that I didn&#x27;t
-know how to code it on Angular 2. The following gist is an extract of the code
-I&#x27;m talking about:</p>
-<pre><code class="hljs ts" style="display:inline"><span class="hljs-keyword">if</span> (!feed.isLocalScreen) {
-  <span class="hljs-comment">// Until this timeout is reached, the &quot;you are muted&quot; notification</span>
-  <span class="hljs-comment">// will not be displayed again</span>
-  <span class="hljs-keyword">var</span> mutedWarningTimeout = now();
-
-  scope.$on(<span class="hljs-string">&#x27;muted.byRequest&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    mutedWarningTimeout = secondsFromNow(<span class="hljs-number">3</span>);
-    MuteNotifier.muted();
-  });
-
-  scope.$on(<span class="hljs-string">&#x27;muted.byUser&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// Reset the warning timeout</span>
-    mutedWarningTimeout = now();
-  });
-
-  scope.$on(<span class="hljs-string">&#x27;muted.Join&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    mutedWarningTimeout = now();
-    MuteNotifier.joinedMuted();
-  });
-
-  scope.$watch(<span class="hljs-string">&#x27;vm.feed.isVoiceDetected()&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newVal</span>) </span>{
-    <span class="hljs-comment">// Display warning only if muted (check for false, undefined means</span>
-    <span class="hljs-comment">// still connecting) and the timeout has been reached</span>
-    <span class="hljs-keyword">if</span> (newVal &amp;&amp; feed.getAudioEnabled() === <span class="hljs-literal">false</span> &amp;&amp; now() &gt; mutedWarningTimeout) {
-      MuteNotifier.speaking();
-      mutedWarningTimeout = secondsFromNow(<span class="hljs-number">60</span>);
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/component---src-templates-blog-post-js.75293f4248569225b596.css">.aside{position:fixed;top:150px;margin-left:-100px;visibility:hidden;opacity:0;transition:visibility 0s linear .3s,opacity .3s 0s}.aside.visible{visibility:visible;opacity:1;transition:visibility 0s linear 0s,opacity .3s 0s}.aside a{font-size:17px;color:rgba(0,0,0,.84);opacity:.65;display:block;position:relative;background:transparent;text-decoration:none;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:none;box-sizing:border-box;margin:10px 3px;height:24px;background:transparent!important}.aside a:hover{opacity:1}.ssrAnimation{-webkit-animation-delay:2s;animation-delay:2s;-webkit-animation-duration:.3s;animation-duration:.3s;-webkit-animation-name:toggle;animation-name:toggle;-webkit-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}@-webkit-keyframes toggle{0%{visibility:hidden;opacity:0}to{visibility:visible;opacity:1}}@keyframes toggle{0%{visibility:hidden;opacity:0}to{visibility:visible;opacity:1}}code[class*=language-],pre[class*=language-]{color:#333;background:none;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;-webkit-font-feature-settings:normal;font-feature-settings:normal;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;margin-bottom:0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#dfe2f1}:not(pre)>code[class*=language-]{border-radius:1px;background:var(--inlineCode-bg);color:var(--inlineCode-text);padding:.15rem .2rem .05rem;white-space:normal;background:rgba(0,0,0,.05);font-size:1rem}pre[class*=language-]{padding:1rem;margin:.5rem 0;overflow:auto}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#898ea4}.token.punctuation{color:#5e6687}.token.namespace{opacity:.7}.token.boolean,.token.number,.token.operator{color:#c76b29}.token.property{color:#c08b30}.token.tag{color:#3d8fd1}.token.string{color:#22a2c9}.token.selector{color:#6679cc}.token.attr-name{color:#c76b29}.language-css .token.string,.style .token.string,.token.entity,.token.url{color:#22a2c9}.token.attr-value,.token.control,.token.directive,.token.keyword,.token.unit{color:#ac9739}.token.atrule,.token.regex,.token.statement{color:#22a2c9}.token.placeholder,.token.variable{color:#3d8fd1}.token.deleted{text-decoration:line-through}.token.inserted{border-bottom:1px dotted #202746;text-decoration:none}.token.italic{font-style:italic}.token.bold,.token.important{font-weight:700}.token.important{color:#c94922}.token.entity{cursor:help}pre>code.highlight{outline:.4em solid #c94922;outline-offset:.4em}.line-numbers .line-numbers-rows{border-right-color:#dfe2f1}.line-numbers-rows>span:before{color:#979db4}.line-highlight{background:rgba(107,115,148,.2);background:linear-gradient(90deg,rgba(107,115,148,.2) 70%,rgba(107,115,148,0))}pre[data-line]{padding:1em 0 1em 3em;position:relative}.gatsby-highlight-code-line{background-color:#022a4b;display:block;margin-right:-1em;margin-left:-1em;padding-right:1em;padding-left:.75em;border-left:.25em solid #ffa7c4}.gatsby-highlight{margin-bottom:1.75rem;font-size:16px;border-radius:1px;background:rgba(0,0,0,.05);-webkit-overflow-scrolling:touch;overflow:auto}.gatsby-highlight pre[class*=language-]{float:left;min-width:100%}</style><meta name="generator" content="Gatsby 2.0.98"/><style type="text/css">
+    .anchor {
+      float: left;
+      padding-right: 4px;
+      margin-left: -20px;
     }
-  });
-}
-</code></pre>
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var offset = element.offsetTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="alternate" type="application/rss+xml" title="magarcia Blog RSS Feed" href="/rss.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#faf014"/><title data-react-helmet="true">Events in Angular2 — magarcia</title><meta data-react-helmet="true" name="description" content="Personal blog by Martin Garcia."/><meta data-react-helmet="true" property="og:url" content="https://magarcia.io/events-in-angular2/"/><meta data-react-helmet="true" property="og:title" content="Events in Angular2"/><meta data-react-helmet="true" name="og:description" content="Personal blog by Martin Garcia."/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="@martinprins"/><meta data-react-helmet="true" name="twitter:title" content="Events in Angular2"/><meta data-react-helmet="true" name="twitter:description" content="Personal blog by Martin Garcia."/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-6468dedfce55865b7786.js"/><link as="script" rel="preload" href="/0-a79d41c74988a6ea700f.js"/><link as="script" rel="preload" href="/app-44e083055daca69579cf.js"/><link as="script" rel="preload" href="/webpack-runtime-e1283d9eb2e1a10146d6.js"/><link as="fetch" rel="preload" href="/static/d/659/path---2016-07-03-events-in-angular-2-76-f-c87-98h4WDaidpTN2gcjN5t2SHuKCNU.json" crossOrigin="use-credentials"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><header class="header"><h3><a href="/">magarcia</a></h3></header><aside class="aside  ssrAnimation"><a title="Share on Twitter" aria-label="Share on Twitter" target="_blank" rel="noopener noreferrer" href="https://twitter.com/intent/tweet?text=Events in Angular2&amp;url=https://magarcia.github.io/events-in-angular2/&amp;via=martinprins"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHRpdGxlPlR3aXR0ZXIgaWNvbjwvdGl0bGU+CiAgICA8cGF0aCBkPSJNMjMuOTU0IDQuNTY5Yy0uODg1LjM4OS0xLjgzLjY1NC0yLjgyNS43NzUgMS4wMTQtLjYxMSAxLjc5NC0xLjU3NCAyLjE2My0yLjcyMy0uOTUxLjU1NS0yLjAwNS45NTktMy4xMjcgMS4xODQtLjg5Ni0uOTU5LTIuMTczLTEuNTU5LTMuNTkxLTEuNTU5LTIuNzE3IDAtNC45MiAyLjIwMy00LjkyIDQuOTE3IDAgLjM5LjA0NS43NjUuMTI3IDEuMTI0QzcuNjkxIDguMDk0IDQuMDY2IDYuMTMgMS42NCAzLjE2MWMtLjQyNy43MjItLjY2NiAxLjU2MS0uNjY2IDIuNDc1IDAgMS43MS44NyAzLjIxMyAyLjE4OCA0LjA5Ni0uODA3LS4wMjYtMS41NjYtLjI0OC0yLjIyOC0uNjE2di4wNjFjMCAyLjM4NSAxLjY5MyA0LjM3NCAzLjk0NiA0LjgyNy0uNDEzLjExMS0uODQ5LjE3MS0xLjI5Ni4xNzEtLjMxNCAwLS42MTUtLjAzLS45MTYtLjA4Ni42MzEgMS45NTMgMi40NDUgMy4zNzcgNC42MDQgMy40MTctMS42OCAxLjMxOS0zLjgwOSAyLjEwNS02LjEwMiAyLjEwNS0uMzkgMC0uNzc5LS4wMjMtMS4xNy0uMDY3IDIuMTg5IDEuMzk0IDQuNzY4IDIuMjA5IDcuNTU3IDIuMjA5IDkuMDU0IDAgMTMuOTk5LTcuNDk2IDEzLjk5OS0xMy45ODYgMC0uMjA5IDAtLjQyLS4wMTUtLjYzLjk2MS0uNjg5IDEuOC0xLjU2IDIuNDYtMi41NDhsLS4wNDctLjAyeiIvPgo8L3N2Zz4K" width="24" height="24" alt="Twitter"/></a><a title="Share on Facebook" aria-label="Share on Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=https://magarcia.github.io/events-in-angular2/"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHRpdGxlPkZhY2Vib29rIGljb248L3RpdGxlPgogICAgPHBhdGggZD0iTTIyLjY3NiAwSDEuMzI0Qy41OTMgMCAwIC41OTMgMCAxLjMyNHYyMS4zNTJDMCAyMy40MDguNTkzIDI0IDEuMzI0IDI0aDExLjQ5NHYtOS4yOTRIOS42ODl2LTMuNjIxaDMuMTI5VjguNDFjMC0zLjA5OSAxLjg5NC00Ljc4NSA0LjY1OS00Ljc4NSAxLjMyNSAwIDIuNDY0LjA5NyAyLjc5Ni4xNDF2My4yNGgtMS45MjFjLTEuNSAwLTEuNzkyLjcyMS0xLjc5MiAxLjc3MXYyLjMxMWgzLjU4NGwtLjQ2NSAzLjYzSDE2LjU2VjI0aDYuMTE1Yy43MzMgMCAxLjMyNS0uNTkyIDEuMzI1LTEuMzI0VjEuMzI0QzI0IC41OTMgMjMuNDA4IDAgMjIuNjc2IDAiLz4KPC9zdmc+Cg==" width="24" height="24" alt="Facebook"/></a><a title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://magarcia.github.io/events-in-angular2/&amp;title=Events in Angular2&amp;source=https%3A//www.linkedin.com/in/martingarciamonterde/"><img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHRpdGxlPkxpbmtlZEluIGljb248L3RpdGxlPgogICAgPHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTU0di01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzctMS44NTMgMC0yLjEzNiAxLjQ0NS0yLjEzNiAyLjkzOXY1LjY2N0g5LjM1MVY5aDMuNDE0djEuNTYxaC4wNDZjLjQ3Ny0uOSAxLjYzNy0xLjg1IDMuMzctMS44NSAzLjYwMSAwIDQuMjY3IDIuMzcgNC4yNjcgNS40NTV2Ni4yODZ6TTUuMzM3IDcuNDMzYy0xLjE0NCAwLTIuMDYzLS45MjYtMi4wNjMtMi4wNjUgMC0xLjEzOC45Mi0yLjA2MyAyLjA2My0yLjA2MyAxLjE0IDAgMi4wNjQuOTI1IDIuMDY0IDIuMDYzIDAgMS4xMzktLjkyNSAyLjA2NS0yLjA2NCAyLjA2NXptMS43ODIgMTMuMDE5SDMuNTU1VjloMy41NjR2MTEuNDUyek0yMi4yMjUgMEgxLjc3MUMuNzkyIDAgMCAuNzc0IDAgMS43Mjl2MjAuNTQyQzAgMjMuMjI3Ljc5MiAyNCAxLjc3MSAyNGgyMC40NTFDMjMuMiAyNCAyNCAyMy4yMjcgMjQgMjIuMjcxVjEuNzI5QzI0IC43NzQgMjMuMiAwIDIyLjIyMiAwaC4wMDN6Ii8+Cjwvc3ZnPgo=" width="24" height="24" alt="LinkedIn"/></a></aside><main><header><h1>Events in Angular2</h1><small class="info"><time dateTime="2016-07-03">July 3, 2016</time> <!-- -->‐ <!-- -->2 min read</small></header><div><p>During the migration of the feed component, I found some lines that I didn’t
+know how to code it on Angular 2. The following code is an extract of the code
+I’m talking about:</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>feed<span class="token punctuation">.</span>isLocalScreen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Until this timeout is reached, the "you are muted" notification</span>
+  <span class="token comment">// will not be displayed again</span>
+  <span class="token keyword">var</span> mutedWarningTimeout <span class="token operator">=</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  scope<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">"muted.byRequest"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mutedWarningTimeout <span class="token operator">=</span> <span class="token function">secondsFromNow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MuteNotifier<span class="token punctuation">.</span><span class="token function">muted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  scope<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">"muted.byUser"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Reset the warning timeout</span>
+    mutedWarningTimeout <span class="token operator">=</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  scope<span class="token punctuation">.</span><span class="token function">$on</span><span class="token punctuation">(</span><span class="token string">"muted.Join"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mutedWarningTimeout <span class="token operator">=</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MuteNotifier<span class="token punctuation">.</span><span class="token function">joinedMuted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  scope<span class="token punctuation">.</span><span class="token function">$watch</span><span class="token punctuation">(</span><span class="token string">"vm.feed.isVoiceDetected()"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>newVal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Display warning only if muted (check for false, undefined means</span>
+    <span class="token comment">// still connecting) and the timeout has been reached</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      newVal <span class="token operator">&amp;&amp;</span>
+      feed<span class="token punctuation">.</span><span class="token function">getAudioEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> mutedWarningTimeout
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      MuteNotifier<span class="token punctuation">.</span><span class="token function">speaking</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      mutedWarningTimeout <span class="token operator">=</span> <span class="token function">secondsFromNow</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>As you can see in the snippet, if the condition is true then the directive
-listens for events of type <code class="hljs" style="display:inline">muted.byRequest</code>, <code class="hljs" style="display:inline">muted.byUser</code> and <code class="hljs" style="display:inline">muted.Join</code>.
+listens for events of type <code class="language-text">muted.byRequest</code>, <code class="language-text">muted.byUser</code> and <code class="language-text">muted.Join</code>.
 The code that involves this events is easy, without any type of complexity (for
-now we ignore the <code class="hljs" style="display:inline">$watch</code>).</p>
-<p>But, wait a minute, I have read the documentation of Angular 2 like hundred
-times and I do not remember nothing about &quot;events&quot; with Angular 1.X style. Thats
-because it not exist. Angular 2 don&#x27;t have a way to make events like in Angular 1,
-so I have to find a solution. After search for a solution I found <a href="http://blog.lacolaco.net/post/event-broadcasting-in-angular-2/">this entry</a>
-in laco&#x27;s blog.</p>
-<h2>Broadcaster</h2>
-<p>Basicaly the idea is to make a service that implements the <code class="hljs" style="display:inline">$broadcast</code> and
-<code class="hljs" style="display:inline">$on</code> method like we had in <code class="hljs" style="display:inline">$rootScope</code>. For do this we use Observables, very
-important in Angular 2, and in this case we use a <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md">Subject</a>.</p>
-<pre><code class="hljs ts" style="display:inline"><span class="hljs-keyword">import</span> { Subject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/Subject&#x27;</span>;
-<span class="hljs-keyword">import</span> { Observable } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;rxjs/Observable&#x27;</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;rxjs/add/operator/filter&#x27;</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;rxjs/add/operator/map&#x27;</span>;
+now we ignore the <code class="language-text">$watch</code>).</p>
+<p>But, wait a minute, I have read the documentation of Angular 2 like a hundred
+times and I don’t remember nothing about “events” with Angular 1.X style. That’s
+because it not exist. Angular 2 don’t have a way to make events like in Angular 1,
+so I have to find a solution. After a search for a solution, I found <a href="http://blog.lacolaco.net/post/event-broadcasting-in-angular-2/">this entry</a>
+in laco’s blog.</p>
+<h2 id="broadcaster"><a href="#broadcaster" aria-hidden class="anchor"><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Broadcaster</h2>
+<p>Basically, the idea is to make a service that implements the <code class="language-text">$broadcast</code> and
+<code class="language-text">$on</code> a method as we had in <code class="language-text">$rootScope</code>. To do this we use Observables, very
+importants in Angular 2, and for this case, we use a <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md">Subject</a>.</p>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Subject <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"rxjs/Subject"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Observable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"rxjs/Observable"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"rxjs/add/operator/filter"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"rxjs/add/operator/map"</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> BroadcastEvent {
-  key: <span class="hljs-built_in">any</span>;
-  data?: <span class="hljs-built_in">any</span>;
-}
+<span class="token keyword">interface</span> <span class="token class-name">BroadcastEvent</span> <span class="token punctuation">{</span>
+  key<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+  data<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Broadcaster {
-  <span class="hljs-keyword">private</span> _eventBus: Subject&lt;BroadcastEvent&gt;;
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Broadcaster</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> _eventBus<span class="token punctuation">:</span> Subject<span class="token operator">&lt;</span>BroadcastEvent<span class="token operator">></span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">this</span>._eventBus = <span class="hljs-keyword">new</span> Subject&lt;BroadcastEvent&gt;();
-  }
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_eventBus <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Subject</span><span class="token operator">&lt;</span>BroadcastEvent<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  broadcast(key: <span class="hljs-built_in">any</span>, data?: <span class="hljs-built_in">any</span>) {
-    <span class="hljs-keyword">this</span>._eventBus.next({ key, data });
-  }
+  <span class="token function">broadcast</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">,</span> data<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_eventBus<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> key<span class="token punctuation">,</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  on&lt;T&gt;(key: <span class="hljs-built_in">any</span>): Observable&lt;T&gt; {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._eventBus
-      .asObservable()
-      .filter(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> event.key === key)
-      .map(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &lt;T&gt;event.data);
-  }
-}
-</code></pre>
+  on<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_eventBus
+      <span class="token punctuation">.</span><span class="token function">asObservable</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>event <span class="token operator">=></span> event<span class="token punctuation">.</span>key <span class="token operator">===</span> key<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>event <span class="token operator">=></span> <span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>So, now we can start to use events like in the example:</p>
-<pre><code class="hljs ts" style="display:inline"><span class="hljs-comment">// child.ts</span>
-<span class="hljs-meta">@Component</span>({
-    selector: <span class="hljs-string">&#x27;child&#x27;</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ChildComponent {
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> broadcaster: Broadcaster</span>) {
-  }
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token comment">// child.ts</span>
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token punctuation">:</span> <span class="token string">'child'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">ChildComponent</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> broadcaster<span class="token punctuation">:</span> Broadcaster<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
 
-  registerStringBroadcast() {
-    <span class="hljs-keyword">this</span>.broadcaster.on&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">&#x27;MyEvent&#x27;</span>)
-      .subscribe(<span class="hljs-function"><span class="hljs-params">message</span> =&gt;</span> {
-        ...
-      });
-  }
+  <span class="token function">registerStringBroadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>broadcaster<span class="token punctuation">.</span>on<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'MyEvent'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>message <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  emitStringBroadcast() {
-    <span class="hljs-keyword">this</span>.broadcaster.broadcast(<span class="hljs-string">&#x27;MyEvent&#x27;</span>, <span class="hljs-string">&#x27;some message&#x27;</span>);
-  }
-}
-</code></pre>
-<h2>How I solved the problem?</h2>
-<p>I didn&#x27;t. This events are only to show the user information pop ups about when
-he is muted, so it&#x27;s not a critical feature. By now this events are fired and
+  <span class="token function">emitStringBroadcast</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>broadcaster<span class="token punctuation">.</span><span class="token function">broadcast</span><span class="token punctuation">(</span><span class="token string">'MyEvent'</span><span class="token punctuation">,</span> <span class="token string">'some message'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2 id="how-i-solved-the-problem"><a href="#how-i-solved-the-problem" aria-hidden class="anchor"><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How I solved the problem?</h2>
+<p>I didn’t. These events are only to show the user information pop-ups about when
+he is muted, so it’s not a critical feature. By now these events are fired and
 listen in different components, and some of it still implemented in Angular 1.4.</p>
-<p>This is a solution I want to share with you, but I&#x27;m not sure if this will be
-the way that I will use to solve the problem. Because this events probably won&#x27;t
-be necessary when I reimplement the <code class="hljs" style="display:inline">MuteNotifier</code>.</p></div></article><aside class="components-___aside___LIh0t  components-___ssrAnimation___1cKKV"><a title="Share on Twitter" aria-label="Share on Twitter" target="_blank" rel="noopener noreferrer" href="https://twitter.com/intent/tweet?text=Events in Angular2&amp;url=https://magarcia.github.io/2016/7/3/events-in-angular2&amp;via=martinprins"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"></path></svg></a><a title="Share on Facebook" aria-label="Share on Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=https://magarcia.github.io/2016/7/3/events-in-angular2"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294H9.689v-3.621h3.129V8.41c0-3.099 1.894-4.785 4.659-4.785 1.325 0 2.464.097 2.796.141v3.24h-1.921c-1.5 0-1.792.721-1.792 1.771v2.311h3.584l-.465 3.63H16.56V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .593 23.408 0 22.676 0"></path></svg></a><a title="Share on LinkedIn" aria-label="Share on LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://magarcia.github.io/2016/7/3/events-in-angular2&amp;title=Events in Angular2&amp;source=https%3A//www.linkedin.com/in/martingarciamonterde/"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a></aside></div></section><div class="components-___footer___229iY"><div class="components-___footerContent___3zrKr"><span>Made with<!-- --> <span role="img" aria-label="love">❤️</span> <!-- -->from Barcelona</span></div></div></div><script>__NEXT_DATA__ = {"props":{"pageProps":{"slug":"events-in-angular2","year":2016,"month":7,"day":3,"content":"\nDuring the migration of the feed component, I found a some lines that I didn't\nknow how to code it on Angular 2. The following gist is an extract of the code\nI'm talking about:\n\n```ts\nif (!feed.isLocalScreen) {\n  // Until this timeout is reached, the \"you are muted\" notification\n  // will not be displayed again\n  var mutedWarningTimeout = now();\n\n  scope.$on('muted.byRequest', function() {\n    mutedWarningTimeout = secondsFromNow(3);\n    MuteNotifier.muted();\n  });\n\n  scope.$on('muted.byUser', function() {\n    // Reset the warning timeout\n    mutedWarningTimeout = now();\n  });\n\n  scope.$on('muted.Join', function() {\n    mutedWarningTimeout = now();\n    MuteNotifier.joinedMuted();\n  });\n\n  scope.$watch('vm.feed.isVoiceDetected()', function(newVal) {\n    // Display warning only if muted (check for false, undefined means\n    // still connecting) and the timeout has been reached\n    if (newVal \u0026\u0026 feed.getAudioEnabled() === false \u0026\u0026 now() \u003e mutedWarningTimeout) {\n      MuteNotifier.speaking();\n      mutedWarningTimeout = secondsFromNow(60);\n    }\n  });\n}\n```\n\nAs you can see in the snippet, if the condition is true then the directive\nlistens for events of type `muted.byRequest`, `muted.byUser` and `muted.Join`.\nThe code that involves this events is easy, without any type of complexity (for\nnow we ignore the `$watch`).\n\nBut, wait a minute, I have read the documentation of Angular 2 like hundred\ntimes and I do not remember nothing about \"events\" with Angular 1.X style. Thats\nbecause it not exist. Angular 2 don't have a way to make events like in Angular 1,\nso I have to find a solution. After search for a solution I found [this entry](http://blog.lacolaco.net/post/event-broadcasting-in-angular-2/)\nin laco's blog.\n\n## Broadcaster\n\nBasicaly the idea is to make a service that implements the `$broadcast` and\n`$on` method like we had in `$rootScope`. For do this we use Observables, very\nimportant in Angular 2, and in this case we use a [Subject](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/subjects.md).\n\n```ts\nimport { Subject } from 'rxjs/Subject';\nimport { Observable } from 'rxjs/Observable';\nimport 'rxjs/add/operator/filter';\nimport 'rxjs/add/operator/map';\n\ninterface BroadcastEvent {\n  key: any;\n  data?: any;\n}\n\nexport class Broadcaster {\n  private _eventBus: Subject\u003cBroadcastEvent\u003e;\n\n  constructor() {\n    this._eventBus = new Subject\u003cBroadcastEvent\u003e();\n  }\n\n  broadcast(key: any, data?: any) {\n    this._eventBus.next({ key, data });\n  }\n\n  on\u003cT\u003e(key: any): Observable\u003cT\u003e {\n    return this._eventBus\n      .asObservable()\n      .filter(event =\u003e event.key === key)\n      .map(event =\u003e \u003cT\u003eevent.data);\n  }\n}\n```\n\nSo, now we can start to use events like in the example:\n\n```ts\n// child.ts\n@Component({\n    selector: 'child'\n})\nexport class ChildComponent {\n  constructor(private broadcaster: Broadcaster) {\n  }\n\n  registerStringBroadcast() {\n    this.broadcaster.on\u003cstring\u003e('MyEvent')\n      .subscribe(message =\u003e {\n        ...\n      });\n  }\n\n  emitStringBroadcast() {\n    this.broadcaster.broadcast('MyEvent', 'some message');\n  }\n}\n```\n\n## How I solved the problem?\n\nI didn't. This events are only to show the user information pop ups about when\nhe is muted, so it's not a critical feature. By now this events are fired and\nlisten in different components, and some of it still implemented in Angular 1.4.\n\nThis is a solution I want to share with you, but I'm not sure if this will be\nthe way that I will use to solve the problem. Because this events probably won't\nbe necessary when I reimplement the `MuteNotifier`.\n","readingTime":"3 min read","title":"Events in Angular2"}},"page":"/post","query":{"year":"2016","month":"07","day":"03","id":"events-in-angular2"},"buildId":"4aB80AMth5SkLOF2AzD~K","nextExport":true};__NEXT_LOADED_PAGES__=[];__NEXT_REGISTER_PAGE=function(r,f){__NEXT_LOADED_PAGES__.push([r, f])}</script><script async="" id="__NEXT_PAGE__/post" src="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/post.js"></script><script async="" id="__NEXT_PAGE__/_app" src="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/_app.js"></script><script async="" id="__NEXT_PAGE__/_error" src="/_next/static/4aB80AMth5SkLOF2AzD~K/pages/_error.js"></script><script src="/_next/static/runtime/webpack-854838f6492464a6e822.js" async=""></script><script src="/_next/static/chunks/commons.96d3ccb2a99a60acf2a6.js" async=""></script><script src="/_next/static/chunks/styles.7d2dab4d8b7bac832de9.js" async=""></script><script src="/_next/static/runtime/main-377bc1082149a53398fc.js" async=""></script></body></html>
+<p>This is a solution I want to share with you, but I’m not sure if this will be
+the way that I will use to solve the problem. Because these events probably won’t
+be necessary when I reimplement the <code class="language-text">MuteNotifier</code>.</p></div><footer><p><a href="https://mobile.twitter.com/search?q=https%3A%2F%2Fmagarcia.github.io%2Fevents-in-angular2%2F" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a> <!-- -->‐<!-- --> <a href="https://github.com/magarcia/blog/edit/master/src/pages/events-in-angular2//index.md" target="_blank" rel="noopener noreferrer">Edit on GitHub</a></p></footer><nav><ul><li><a rel="prev" href="/2016/06/29/midterm/">← <!-- -->Midterm</a></li><li><a rel="next" href="/2016/07/04/watch-with-angular2/">$watch with Angular 2<!-- --> →</a></li></ul></nav></main></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-js","jsonName":"2016-07-03-events-in-angular-2-76f","path":"/2016/07/03/events-in-angular2/"};window.dataPath="659/path---2016-07-03-events-in-angular-2-76-f-c87-98h4WDaidpTN2gcjN5t2SHuKCNU";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-44e083055daca69579cf.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js.75293f4248569225b596.css","/component---src-templates-blog-post-js-6468dedfce55865b7786.js"],"component---src-pages-404-js":["/component---src-pages-404-js-e1cd9d783e782b757761.js"],"component---src-pages-index-js":["/component---src-pages-index-js.fc67db01fcf37203169b.css","/component---src-pages-index-js-2e971025310f524dd15e.js"],"pages-manifest":["/pages-manifest-42db9bf201c46657d04b.js"]};/*]]>*/</script><script src="/webpack-runtime-e1283d9eb2e1a10146d6.js" async=""></script><script src="/app-44e083055daca69579cf.js" async=""></script><script src="/0-a79d41c74988a6ea700f.js" async=""></script><script src="/component---src-templates-blog-post-js-6468dedfce55865b7786.js" async=""></script></body></html>

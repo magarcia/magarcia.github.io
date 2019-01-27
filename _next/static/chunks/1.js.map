@@ -1,1 +1,0 @@
-{"version":3,"file":"static/chunks/1.js","sources":["webpack:///./_posts/2016-05-01-hello-world.md"],"sourcesContent":["module.exports = \"---\\nlayout: post\\ntitle: Hello World\\n---\\n\\nAs any other start in Computer Science:\\n\\n> Hello World\\n\""],"mappings":";;;;;;;;;AAAA;;;;A","sourceRoot":""}
